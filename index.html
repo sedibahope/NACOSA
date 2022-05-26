@@ -6,52 +6,9 @@
         <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="stylesheet" href="./resources/ol.css">
-        <link rel="stylesheet" href="resources/fontawesome-all.min.css">
-        <link rel="stylesheet" href="./resources/ol-layerswitcher.css">
-        <link rel="stylesheet" href="./resources/qgis2web.css">
-<style>
-.search-layer {
-  top: 100px;
-  left: .5em;
-}
-.ol-touch .search-layer {
-  top: 130px;
-}
-</style>
-        <style>
-        html, body {
-            background-color: #ffffff;
-        }
-        .ol-control button {
-            background-color: #f8f8f8 !important;
-            color: #111979 !important;
-            border-radius: 0px !important;
-        }
-        .ol-zoom, .geolocate, .gcd-gl-control .ol-control {
-            background-color: rgba(255,255,255,.4) !important;
-            padding: 3px !important;
-        }
-        .ol-scale-line {
-            background: none !important;
-        }
-        .ol-scale-line-inner {
-            border: 2px solid #f8f8f8 !important;
-            border-top: none !important;
-            background: rgba(255, 255, 255, 0.5) !important;
-            color: black !important;
-        }
-        </style>
-
-        <style>
-        .geolocate {
-            top: 65px;
-            left: .5em;
-        }
-        .ol-touch .geolocate {
-            top: 80px;
-        }
-        </style>
+        <link rel="stylesheet" href="mapbox/mapbox-gl.css">
+        <link rel="stylesheet" href="css/qgis2web.css">
+        <link rel="stylesheet" href="mapbox/mapbox-gl-generic-geocoder.css">
         <style>
         html, body, #map {
             width: 100%;
@@ -64,20 +21,132 @@
     </head>
     <body>
         <div id="map">
-            <div id="popup" class="ol-popup">
-                <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-                <div id="popup-content"></div>
-            </div>
+            <nav id="menu"></nav>
+              <div id="distance" class="distance-container"></div>
         </div>
-        <script src="resources/qgis2web_expressions.js"></script>
-        <script src="resources/polyfills.js"></script>
-        <script src="./resources/functions.js"></script>
-        <script src="./resources/ol.js"></script>
-        <script src="./resources/ol-layerswitcher.js"></script>
-        <script src="layers/WC_CoCPT_SubDistricts_0.js"></script><script src="layers/RSA_1.js"></script><script src="layers/KZN_UMG_District_2.js"></script><script src="layers/KZN_ETE_Subdistricts_3.js"></script><script src="layers/GAU_EKU_District_4.js"></script><script src="layers/GAU_COJ_District_5.js"></script><script src="layers/EC_NMB_District_6.js"></script><script src="layers/RSA_PopulationEstimates_7.js"></script><script src="layers/RSA_PBReach_202122YTD_8.js"></script><script src="layers/RSA_PBReach_202021_9.js"></script><script src="layers/RSA_PBReach_201920_10.js"></script><script src="layers/RSA_HRServiceSites_11.js"></script><script src="layers/RSA_PSSReach_202122YTD_12.js"></script><script src="layers/RSA_PSSReach_202021_13.js"></script><script src="layers/RSA_PSSReach_201920_14.js"></script><script src="layers/RSA_OSTReach_202122YTD_15.js"></script><script src="layers/RSA_OSTReach_202021_16.js"></script><script src="layers/RSA_OSTReach_201920_17.js"></script><script src="layers/RSA_NSPReach_202122YTD_18.js"></script><script src="layers/RSA_NSPReach_202021_19.js"></script><script src="layers/RSA_HTSReach_202122YTD_20.js"></script><script src="layers/RSA_HTSReach_202021_21.js"></script><script src="layers/RSA_HTSReach_201920_22.js"></script><script src="layers/RSA_HRVReach_202122YTD_23.js"></script><script src="layers/RSA_HRVReach_202021_24.js"></script><script src="layers/RSA_HRVReach_201920_25.js"></script><script src="layers/RSA_HCVReach_202122YTD_26.js"></script><script src="layers/RSA_ARTReach_202122YTD_27.js"></script><script src="layers/RSA_ARTReach_202021_28.js"></script><script src="layers/RSA_ARTReach_201920_29.js"></script><script src="layers/RSA_SkillsCentres_30.js"></script><script src="layers/RSA_Shelters_31.js"></script><script src="layers/RSA_SAPS_32.js"></script><script src="layers/RSA_RehabServices_33.js"></script><script src="layers/RSA_MHServices_34.js"></script><script src="layers/RSA_HCFacilities_35.js"></script><script src="layers/RSA_DIC_36.js"></script>
-        <script src="styles/WC_CoCPT_SubDistricts_0_style.js"></script><script src="styles/RSA_1_style.js"></script><script src="styles/KZN_UMG_District_2_style.js"></script><script src="styles/KZN_ETE_Subdistricts_3_style.js"></script><script src="styles/GAU_EKU_District_4_style.js"></script><script src="styles/GAU_COJ_District_5_style.js"></script><script src="styles/EC_NMB_District_6_style.js"></script><script src="styles/RSA_PopulationEstimates_7_style.js"></script><script src="styles/RSA_PBReach_202122YTD_8_style.js"></script><script src="styles/RSA_PBReach_202021_9_style.js"></script><script src="styles/RSA_PBReach_201920_10_style.js"></script><script src="styles/RSA_HRServiceSites_11_style.js"></script><script src="styles/RSA_PSSReach_202122YTD_12_style.js"></script><script src="styles/RSA_PSSReach_202021_13_style.js"></script><script src="styles/RSA_PSSReach_201920_14_style.js"></script><script src="styles/RSA_OSTReach_202122YTD_15_style.js"></script><script src="styles/RSA_OSTReach_202021_16_style.js"></script><script src="styles/RSA_OSTReach_201920_17_style.js"></script><script src="styles/RSA_NSPReach_202122YTD_18_style.js"></script><script src="styles/RSA_NSPReach_202021_19_style.js"></script><script src="styles/RSA_HTSReach_202122YTD_20_style.js"></script><script src="styles/RSA_HTSReach_202021_21_style.js"></script><script src="styles/RSA_HTSReach_201920_22_style.js"></script><script src="styles/RSA_HRVReach_202122YTD_23_style.js"></script><script src="styles/RSA_HRVReach_202021_24_style.js"></script><script src="styles/RSA_HRVReach_201920_25_style.js"></script><script src="styles/RSA_HCVReach_202122YTD_26_style.js"></script><script src="styles/RSA_ARTReach_202122YTD_27_style.js"></script><script src="styles/RSA_ARTReach_202021_28_style.js"></script><script src="styles/RSA_ARTReach_201920_29_style.js"></script><script src="styles/RSA_SkillsCentres_30_style.js"></script><script src="styles/RSA_Shelters_31_style.js"></script><script src="styles/RSA_SAPS_32_style.js"></script><script src="styles/RSA_RehabServices_33_style.js"></script><script src="styles/RSA_MHServices_34_style.js"></script><script src="styles/RSA_HCFacilities_35_style.js"></script><script src="styles/RSA_DIC_36_style.js"></script>
-        <script src="./layers/layers.js" type="text/javascript"></script> 
-        <script src="./resources/Autolinker.min.js"></script>
-        <script src="./resources/qgis2web.js"></script>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="./mapbox/mapbox-gl.js"></script>
+        <script src="mapbox/mapbox-gl-generic-geocoder.min.js"></script>
+        <script src="data/WC_CoCPT_SubDistricts_0.js"></script>
+        <script src="data/RSA_1.js"></script>
+        <script src="data/KZN_UMG_District_2.js"></script>
+        <script src="data/KZN_ETE_Subdistricts_3.js"></script>
+        <script src="data/GAU_EKU_District_4.js"></script>
+        <script src="data/GAU_COJ_District_5.js"></script>
+        <script src="data/EC_NMB_District_6.js"></script>
+        <script src="data/RSA_PopulationEstimates_7.js"></script>
+        <script src="data/RSA_PBReach_202122YTD_8.js"></script>
+        <script src="data/RSA_PBReach_202021_9.js"></script>
+        <script src="data/RSA_PBReach_201920_10.js"></script>
+        <script src="data/RSA_HRServiceSites_11.js"></script>
+        <script src="data/RSA_PSSReach_202122YTD_12.js"></script>
+        <script src="data/RSA_PSSReach_202021_13.js"></script>
+        <script src="data/RSA_PSSReach_201920_14.js"></script>
+        <script src="data/RSA_OSTReach_202122YTD_15.js"></script>
+        <script src="data/RSA_OSTReach_202021_16.js"></script>
+        <script src="data/RSA_OSTReach_201920_17.js"></script>
+        <script src="data/RSA_NSPReach_202122YTD_18.js"></script>
+        <script src="data/RSA_NSPReach_202021_19.js"></script>
+        <script src="data/RSA_HTSReach_202122YTD_20.js"></script>
+        <script src="data/RSA_HTSReach_202021_21.js"></script>
+        <script src="data/RSA_HTSReach_201920_22.js"></script>
+        <script src="data/RSA_HRVReach_202122YTD_23.js"></script>
+        <script src="data/RSA_HRVReach_202021_24.js"></script>
+        <script src="data/RSA_HRVReach_201920_25.js"></script>
+        <script src="data/RSA_HCVReach_202122YTD_26.js"></script>
+        <script src="data/RSA_ARTReach_202122YTD_27.js"></script>
+        <script src="data/RSA_ARTReach_202021_28.js"></script>
+        <script src="data/RSA_ARTReach_201920_29.js"></script>
+        <script src="data/RSA_SkillsCentres_30.js"></script>
+        <script src="data/RSA_Shelters_31.js"></script>
+        <script src="data/RSA_SAPS_32.js"></script>
+        <script src="data/RSA_RehabServices_33.js"></script>
+        <script src="data/RSA_MHServices_34.js"></script>
+        <script src="data/RSA_HCFacilities_35.js"></script>
+        <script src="data/RSA_DIC_36.js"></script>
+<script src="./mapbox/style.js"></script>
+<script src="./js/Autolinker.min.js"></script>
+<script>
+var map = new mapboxgl.Map({
+ container: 'map',
+ style: styleJSON,
+ center: [24.63672549815911,-28.364448315596732],
+ zoom: 6,
+ bearing: 360.0,
+ attributionControl: false
+});
+map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+map.addControl(new mapboxgl.AttributionControl({
+    customAttribution: '<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://github.com/mapbox/mapbox-gl-js" target="_blank">Mapbox GL JS</a> &middot; <a href="https://qgis.org" target="_blank">QGIS</a>',
+    compact: false
+}));
+var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+    var toggleableLayerIds = ['lyr_OpenStreetMap_37_0', 'OpenStreetMap','lyr_RSA_DIC_36_0', 'RSA_DIC','lyr_RSA_HCFacilities_35_0', 'RSA_HC Facilities','lyr_RSA_MHServices_34_0', 'RSA_MH Services','lyr_RSA_RehabServices_33_0', 'RSA_Rehab Services','lyr_RSA_SAPS_32_0', 'RSA_SAPS','lyr_RSA_Shelters_31_0', 'RSA_Shelters','lyr_RSA_SkillsCentres_30_0', 'RSA_Skills Centres','lyr_RSA_ARTReach_201920_29_0', 'RSA_ART Reach_2019-20','lyr_RSA_ARTReach_202021_28_0', 'RSA_ART Reach_2020-21','lyr_RSA_ARTReach_202122YTD_27_0', 'RSA_ART Reach_2021-22YTD','lyr_RSA_HCVReach_202122YTD_26_0', 'RSA_HCV Reach_2021-22YTD','lyr_RSA_HRVReach_201920_25_0', 'RSA_HRV Reach_2019-20','lyr_RSA_HRVReach_202021_24_0', 'RSA_HRV Reach_2020-21','lyr_RSA_HRVReach_202122YTD_23_0', 'RSA_HRV Reach_2021-22YTD','lyr_RSA_HTSReach_201920_22_0', 'RSA_HTS Reach_2019-20','lyr_RSA_HTSReach_202021_21_0', 'RSA_HTS Reach_2020-21','lyr_RSA_HTSReach_202122YTD_20_0', 'RSA_HTS Reach_2021-22YTD','lyr_RSA_NSPReach_202021_19_0', 'RSA_NSP Reach_2020-21','lyr_RSA_NSPReach_202122YTD_18_0', 'RSA_NSP Reach_2021-22YTD','lyr_RSA_OSTReach_201920_17_0', 'RSA_OST Reach_2019-20','lyr_RSA_OSTReach_202021_16_0', 'RSA_OST Reach_2020-21','lyr_RSA_OSTReach_202122YTD_15_0', 'RSA_OST Reach_2021-22YTD','lyr_RSA_PSSReach_201920_14_0', 'RSA_PSS Reach_2019-20','lyr_RSA_PSSReach_202021_13_0', 'RSA_PSS Reach_2020-21','lyr_RSA_PSSReach_202122YTD_12_0', 'RSA_PSS Reach_2021-22YTD','lyr_RSA_HRServiceSites_11_0', 'RSA_HR Service Sites','lyr_RSA_PBReach_201920_10_0', 'RSA_PB Reach_2019-20','lyr_RSA_PBReach_202021_9_0', 'RSA_PB Reach_2020-21','lyr_RSA_PBReach_202122YTD_8_0', 'RSA_PB Reach_2021-22YTD','lyr_RSA_PopulationEstimates_7_0', 'RSA_Population Estimates','lyr_EC_NMB_District_6_0', 'EC_NMB_District','lyr_GAU_COJ_District_5_0', 'GAU_COJ_District','lyr_GAU_EKU_District_4_0', 'GAU_EKU_District','lyr_KZN_ETE_Subdistricts_3_0', 'KZN_ETE_Sub-districts','lyr_KZN_UMG_District_2_0', 'KZN_UMG_District','lyr_RSA_1_0', 'RSA','lyr_WC_CoCPT_SubDistricts_0_0', 'WC_CoCPT_Sub-Districts'];
+
+    for (var i = 0; i < toggleableLayerIds.length; i=i+2) {
+        var id = toggleableLayerIds[i];
+        var layerName = toggleableLayerIds[i+1]
+
+        var link = document.createElement('a');
+        link.href = '#';
+        link.className = 'active';
+        link.layer = id;
+        link.textContent = layerName;
+
+        link.onclick = function (e) {
+            var clickedLayer = this.layer;
+            e.preventDefault();
+            e.stopPropagation();
+
+            var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+
+            if (typeof visibility === 'undefined' || visibility == 'visible') {
+                map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                this.className = '';
+            } else {
+                this.className = 'active';
+                map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+            }
+        };
+
+        var layers = document.getElementById('menu');
+        layers.appendChild(link);
+    }
+        var geocodeNominatimRequest = function(query, mapBounds, options) {
+        var params = { format: "json", q: query, limit: options.limit };
+        var urlParams = new URLSearchParams(Object.entries(params));
+
+        return fetch("http://nominatim.openstreetmap.org/search?" + urlParams)
+            .then(function(response) {
+                if(response.ok) {
+                    return response.json();
+                } else {
+                    return [];
+                }
+            }).then(function(json) {
+                return json.map(function(result) {
+                    return {
+                        name: result.display_name,
+                        lat: result.lat,
+                        lon: result.lon,
+                        bbox: [result.boundingbox[2], result.boundingbox[0],
+                               result.boundingbox[3], result.boundingbox[1]]
+                    };
+                });
+            });
+        };
+
+        map.addControl(new MapboxGenericGeocoder({}, geocodeNominatimRequest));
+</script>
+        <script>
+        map.addControl(
+            new mapboxgl.GeolocateControl({
+                positionOptions: {
+                    enableHighAccuracy: true
+                },
+                trackUserLocation: true
+            })
+        );
+        </script>
     </body>
 </html>
